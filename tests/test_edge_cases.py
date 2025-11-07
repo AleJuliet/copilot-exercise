@@ -79,8 +79,8 @@ class TestEdgeCases:
     def test_empty_email_parameter(self, client, reset_activities):
         """Test behavior with empty email parameter"""
         response = client.post("/activities/Soccer Team/signup", params={"email": ""})
-        # This should still work as the backend doesn't validate email format
-        assert response.status_code == 200
+        # Should fail because empty email is not valid
+        assert response.status_code == 422
     
     def test_missing_email_parameter(self, client, reset_activities):
         """Test behavior with missing email parameter"""
